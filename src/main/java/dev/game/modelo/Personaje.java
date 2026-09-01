@@ -15,6 +15,7 @@ public abstract class Personaje{
     private List<String> afinidad;
     private int estaminaMaxima;
     private int estaminaActual;
+    private List<Habilidad> habilidades;
 
     public Personaje(String nombre, double vida, int nivel, double ataqueFisico, double defensaFisica, double ataqueMagico, double defensaMagica, int magicuraMaxima, int magicuraActualues, String evolucion, List<String> afinidad, int estaminaMaxima, int estaminaActual) {
         this.nombre = nombre;
