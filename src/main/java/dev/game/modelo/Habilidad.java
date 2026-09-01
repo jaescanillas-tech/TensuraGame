@@ -89,4 +89,6 @@ public abstract class Habilidad {
 
     public abstract void detallehabilidad();
 
+    public abstract double calcularDano(Personaje p);
+
 }

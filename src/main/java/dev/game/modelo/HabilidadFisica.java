@@ -6,12 +6,22 @@ public class HabilidadFisica extends Habilidad {
     private double danoFisico;
     private int costeEstamina;
     private double penetracionFisica;
+    private double escaladoAtaque;
 
-    public HabilidadFisica(String nombre, String descripcion, CategoriaHabilidad categoria, double cooldown, int costeMagicura, List<String> elementos, List<String> efectos, int areaDeImpacto, double danoFisico, int costeEstamina, double penetracionFisica) {
+    public HabilidadFisica(String nombre, String descripcion, CategoriaHabilidad categoria, double cooldown, int costeMagicura, List<String> elementos, List<String> efectos, int areaDeImpacto, double danoFisico, int costeEstamina, double penetracionFisica, double escaladoAtaque) {
         super(nombre, descripcion, categoria, cooldown, costeMagicura, elementos, efectos, areaDeImpacto);
         this.danoFisico = danoFisico;
         this.costeEstamina = costeEstamina;
         this.penetracionFisica = penetracionFisica;
+        this.escaladoAtaque = escaladoAtaque;
+    }
+
+    public double getEscaladoAtaque() {
+        return escaladoAtaque;
+    }
+
+    public void setEscaladoAtaque(double escaladoAtaque) {
+        this.escaladoAtaque = escaladoAtaque;
     }
 
     public double getPenetracionFisica() {
@@ -52,5 +62,10 @@ public class HabilidadFisica extends Habilidad {
         System.out.println("Efectos: " + getEfectos());
         System.out.println("Área de Impacto: " + getAreaDeImpacto());
         System.out.println("Penetración Física: " + penetracionFisica);
+    }
+
+    @Override
+    public double calcularDano(Personaje p) {
+        return this.danoFisico + (p.getAtaqueFisico() * this.escaladoAtaque);
     }
 }

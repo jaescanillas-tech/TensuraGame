@@ -1,4 +1,5 @@
 package dev.game.modelo;
+import java.util.ArrayList;
 import java.util.List;
 
 public abstract class Personaje{
@@ -7,7 +8,7 @@ public abstract class Personaje{
     private int nivel;
     private double ataqueFisico;
     private double defensaFisica;
-    private double AtaqueMagico;
+    private double ataqueMagico;
     private double defensaMagica;
     private int magicuraMaxima;
     private int magicuraActualues;
@@ -23,7 +24,7 @@ public abstract class Personaje{
         this.nivel = nivel;
         this.ataqueFisico = ataqueFisico;
         this.defensaFisica = defensaFisica;
-        this.AtaqueMagico = ataqueMagico;
+        this.ataqueMagico = ataqueMagico;
         this.defensaMagica = defensaMagica;
         this.magicuraMaxima = magicuraMaxima;
         this.magicuraActualues = magicuraActualues;
@@ -31,6 +32,15 @@ public abstract class Personaje{
         this.afinidad = afinidad;
         this.estaminaMaxima = estaminaMaxima;
         this.estaminaActual = estaminaActual;
+        this.habilidades = new ArrayList<>();
+    }
+
+    public List<Habilidad> getHabilidades() {
+        return habilidades;
+    }
+
+    public void setHabilidades(List<Habilidad> habilidades) {
+        this.habilidades = habilidades;
     }
 
     public int getEstaminaMaxima() {
@@ -90,11 +100,11 @@ public abstract class Personaje{
     }
 
     public double getAtaqueMagico() {
-        return AtaqueMagico;
+        return ataqueMagico;
     }
 
     public void setAtaqueMagico(double ataqueMagico) {
-        AtaqueMagico = ataqueMagico;
+        this.ataqueMagico = ataqueMagico;
     }
 
     public double getDefensaMagica() {
@@ -138,4 +148,10 @@ public abstract class Personaje{
     }
 
     public abstract void mostrarEstadisticas();
+
+    public void aprenderHabilid(Habilidad h){
+        if (h != null) {
+            this.habilidades.add(h);
+        }
+    }
 }
