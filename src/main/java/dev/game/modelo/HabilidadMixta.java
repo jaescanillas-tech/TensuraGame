@@ -1,5 +1,7 @@
 package dev.game.modelo;
 
+import java.util.List;
+
 public class HabilidadMixta extends Habilidad{
     private double danoFisico;
     private double danoMagico;
@@ -7,7 +9,8 @@ public class HabilidadMixta extends Habilidad{
     private double penetracionMagica;
     private int costeEstamina;
 
-    public HabilidadMixta(double danoFisico, double danoMagico, double penetracionFisica, double penetracionMagica, int costeEstamina) {
+    public HabilidadMixta(String nombre, String descripcion, CategoriaHabilidad categoria, double cooldown, int costeMagicura, List<String> elementos, List<String> efectos, int areaDeImpacto, double danoFisico, double danoMagico, double penetracionFisica, double penetracionMagica, int costeEstamina) {
+        super(nombre, descripcion, categoria, cooldown, costeMagicura, elementos, efectos, areaDeImpacto);
         this.danoFisico = danoFisico;
         this.danoMagico = danoMagico;
         this.penetracionFisica = penetracionFisica;
