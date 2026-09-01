@@ -1,29 +1,21 @@
 package dev.game.modelo;
 
+import java.util.List;
+
 public class Monstruo extends Personaje{
-    private String rangoEvolucion;
-    private int magia;
+    private RangoPeligro nivelPeligro;
 
-    public Monstruo(String nombre, double vida, int nivel, double ataque, int magicuraMaxima, int magicuraActualues, double defensa, int magia, String rangoEvolucion) {
-        super(nombre, vida, nivel, ataque, magicuraMaxima, magicuraActualues, defensa);
-        this.rangoEvolucion = rangoEvolucion;
-        this.magia = magia;
+    public Monstruo(String nombre, double vida, int nivel, double ataqueFisico, double defensaFisica, double ataqueMagico, double defensaMagica, int magicuraMaxima, int magicuraActualues, String evolucion, List<String> afinidad, int estaminaMaxima, int estaminaActual, RangoPeligro nivelPeligro) {
+        super(nombre, vida, nivel, ataqueFisico, defensaFisica, ataqueMagico, defensaMagica, magicuraMaxima, magicuraActualues, evolucion, afinidad, estaminaMaxima, estaminaActual);
+        this.nivelPeligro = nivelPeligro;
     }
 
-    public String getRangoEvolucion() {
-        return rangoEvolucion;
+    public RangoPeligro getNivelPeligro() {
+        return nivelPeligro;
     }
 
-    public void setRangoEvolucion(String rangoEvolucion) {
-        this.rangoEvolucion = rangoEvolucion;
-    }
-
-    public int getMagia() {
-        return magia;
-    }
-
-    public void setMagia(int magia) {
-        this.magia = magia;
+    public void setNivelPeligro(RangoPeligro nivelPeligro) {
+        this.nivelPeligro = nivelPeligro;
     }
 
     @Override
@@ -32,9 +24,16 @@ public class Monstruo extends Personaje{
         System.out.println("Nombre: " + getNombre());
         System.out.println("Vida: " + getVida());
         System.out.println("Nivel: " + getNivel());
-        System.out.println("Ataque: " + getAtaque());
-        System.out.println("Defensa: " + getDefensa());
-        System.out.println("Magia: " + getMagia());
-        System.out.println("Evolucion: " + getRangoEvolucion());
+        System.out.println("Estamina Maxima: " + getEstaminaMaxima());
+        System.out.println("Estamina Actual: " + getEstaminaActual());
+        System.out.println("Magicura Maxima: " + getMagicuraMaxima());
+        System.out.println("Magicura Actual: " + getMagicuraActualues());
+        System.out.println("Nivel de Peligro: " + getNivelPeligro());
+        System.out.println("Ataque Fisico: " + getAtaqueFisico());
+        System.out.println("Defensa Fisica: " + getDefensaFisica());
+        System.out.println("Ataque Magico: " + getAtaqueMagico());
+        System.out.println("Defensa Magica: " + getDefensaMagica());
+        System.out.println("Evolucion: " + getEvolucion());
+        System.out.println("Afinidad: " + getAfinidad());
     }
 }
