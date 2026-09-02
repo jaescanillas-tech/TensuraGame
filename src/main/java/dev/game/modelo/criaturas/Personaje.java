@@ -22,13 +22,12 @@ public abstract class Personaje{
     protected int estaminaActual;
     protected List<Habilidad> habilidades; // Lista de habilidades del personaje ( Posiblemente se pueda aumentar a mas )
 
-    public Personaje(String nombre, Razas raza, int nivel) {
+    public Personaje(String nombre, Razas raza, int nivel, int magicuraActual, int estaminaActual) {
         this.nombre = nombre;
         this.raza = raza;
         this.nivel = nivel;
         this.magicuraActual = this.magicuraMaxima;
         this.estaminaActual = this.estaminaMaxima;
-        this.ataqueFisico = 0.0;
 
 
         //Estadisticas del enum
