@@ -1,38 +1,47 @@
 package dev.game.modelo.criaturas;
 import dev.game.modelo.habilities.*;
+
 import java.util.ArrayList;
 import java.util.List;
 
 public abstract class Personaje{
-    private String nombre;
-    private double vida;
-    private int nivel;
-    private double ataqueFisico;
-    private double defensaFisica;
-    private double ataqueMagico;
-    private double defensaMagica;
-    private int magicuraMaxima;
-    private int magicuraActualues;
-    private String evolucion;
-    private List<String> afinidad;  // Afinidad para los tipos de magia
-    private int estaminaMaxima;
-    private int estaminaActual;
-    private List<Habilidad> habilidades; // Lista de habilidades del personaje ( Posiblemente se pueda aumentar a mas )
+    protected String nombre;
+    protected double vida;
+    protected int nivel;
+    protected Razas raza;
+    protected double ataqueFisico;
+    protected double ataqueMagico;
+    protected double ataqueElemental;
+    protected int defensaFisica;
+    protected int defensaMagica;
+    protected int defensaElemental;
+    protected int magicuraMaxima;
+    protected int magicuraActual;
+    protected List<Elementos> afinidad;  // Afinidad para los tipos de magia
+    protected int estaminaMaxima;
+    protected int estaminaActual;
+    protected List<Habilidad> habilidades; // Lista de habilidades del personaje ( Posiblemente se pueda aumentar a mas )
 
-    public Personaje(String nombre, double vida, int nivel, double ataqueFisico, double defensaFisica, double ataqueMagico, double defensaMagica, int magicuraMaxima, int magicuraActualues, String evolucion, List<String> afinidad, int estaminaMaxima, int estaminaActual) {
+    public Personaje(String nombre, Razas raza, int nivel) {
         this.nombre = nombre;
-        this.vida = vida;
+        this.raza = raza;
         this.nivel = nivel;
-        this.ataqueFisico = ataqueFisico;
-        this.defensaFisica = defensaFisica;
-        this.ataqueMagico = ataqueMagico;
-        this.defensaMagica = defensaMagica;
-        this.magicuraMaxima = magicuraMaxima;
-        this.magicuraActualues = magicuraActualues;
-        this.evolucion = evolucion;
-        this.afinidad = afinidad;
-        this.estaminaMaxima = estaminaMaxima;
-        this.estaminaActual = estaminaActual;
+        this.magicuraActual = this.magicuraMaxima;
+        this.estaminaActual = this.estaminaMaxima;
+        this.ataqueFisico = 0.0;
+
+
+        //Estadisticas del enum
+        this.vida = raza.getVidaBase();
+        this.estaminaMaxima = raza.getEstaminaBase();
+        this.magicuraMaxima = raza.getMagicuraBase();
+        this.ataqueFisico = raza.getAtcFisicoBase();
+        this.ataqueMagico = raza.getAtcMagicoBase();
+        this.defensaFisica = raza.getDefFisicaBase();
+        this.defensaMagica = raza.getDefMagicaBase();
+
+        //listas
+        this.afinidad = new ArrayList<>();
         this.habilidades = new ArrayList<>();
     }
 
@@ -40,104 +49,60 @@ public abstract class Personaje{
         return nombre;
     }
 
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
-    }
-
     public double getVida() {
         return vida;
-    }
-
-    public void setVida(double vida) {
-        this.vida = vida;
     }
 
     public int getNivel() {
         return nivel;
     }
 
-    public void setNivel(int nivel) {
-        this.nivel = nivel;
+    public List<Razas> getRaza() {
+        return raza;
     }
 
     public double getAtaqueFisico() {
         return ataqueFisico;
     }
 
-    public void setAtaqueFisico(double ataqueFisico) {
-        this.ataqueFisico = ataqueFisico;
-    }
-
-    public double getDefensaFisica() {
-        return defensaFisica;
-    }
-
-    public void setDefensaFisica(double defensaFisica) {
-        this.defensaFisica = defensaFisica;
-    }
-
     public double getAtaqueMagico() {
         return ataqueMagico;
     }
 
-    public void setAtaqueMagico(double ataqueMagico) {
-        this.ataqueMagico = ataqueMagico;
+    public double getAtaqueElemental() {
+        return ataqueElemental;
     }
 
-    public double getDefensaMagica() {
+    public int getDefensaFisica() {
+        return defensaFisica;
+    }
+
+    public int getDefensaMagica() {
         return defensaMagica;
     }
 
-    public void setDefensaMagica(double defensaMagica) {
-        this.defensaMagica = defensaMagica;
+    public int getDefensaElemental() {
+        return defensaElemental;
     }
 
     public int getMagicuraMaxima() {
         return magicuraMaxima;
     }
 
-    public void setMagicuraMaxima(int magicuraMaxima) {
-        this.magicuraMaxima = magicuraMaxima;
+    public int getMagicuraActual() {
+        return magicuraActual;
     }
 
-    public int getMagicuraActualues() {
-        return magicuraActualues;
-    }
-
-    public void setMagicuraActualues(int magicuraActualues) {
-        this.magicuraActualues = magicuraActualues;
-    }
-
-    public String getEvolucion() {
-        return evolucion;
-    }
-
-    public void setEvolucion(String evolucion) {
-        this.evolucion = evolucion;
-    }
-
-    public List<String> getAfinidad() {
+    public List<Elementos> getAfinidad() {
         return afinidad;
-    }
-
-    public void setAfinidad(List<String> afinidad) {
-        this.afinidad = afinidad;
     }
 
     public int getEstaminaMaxima() {
         return estaminaMaxima;
     }
 
-    public void setEstaminaMaxima(int estaminaMaxima) {
-        this.estaminaMaxima = estaminaMaxima;
-    }
-
     public int getEstaminaActual() {
         return estaminaActual;
-    }
-
-    public void setEstaminaActual(int estaminaActual) {
-        this.estaminaActual = estaminaActual;
     }
 
     public List<Habilidad> getHabilidades() {
