@@ -1,7 +1,6 @@
-package dev.game.modelo;
-import java.util.ArrayList;
+package dev.game.modelo.criaturas;
 
-public class Humano extends Personaje{
+public class Humano extends Personaje {
 
     @Override
     public void mostrarEstadisticas() {

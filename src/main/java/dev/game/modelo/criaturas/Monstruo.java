@@ -1,8 +1,8 @@
-package dev.game.modelo;
+package dev.game.modelo.criaturas;
 
 import java.util.List;
 
-public class Monstruo extends Personaje{
+public class Monstruo extends Personaje {
     private RangoPeligro nivelPeligro;
 
     public Monstruo(String nombre, double vida, int nivel, double ataqueFisico, double defensaFisica, double ataqueMagico, double defensaMagica, int magicuraMaxima, int magicuraActualues, String evolucion, List<String> afinidad, int estaminaMaxima, int estaminaActual, RangoPeligro nivelPeligro) {

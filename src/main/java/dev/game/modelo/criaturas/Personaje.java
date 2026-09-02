@@ -1,4 +1,5 @@
-package dev.game.modelo;
+package dev.game.modelo.criaturas;
+import dev.game.modelo.habilities.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -13,10 +14,10 @@ public abstract class Personaje{
     private int magicuraMaxima;
     private int magicuraActualues;
     private String evolucion;
-    private List<String> afinidad;
+    private List<String> afinidad;  // Afinidad para los tipos de magia
     private int estaminaMaxima;
     private int estaminaActual;
-    private List<Habilidad> habilidades;
+    private List<Habilidad> habilidades; // Lista de habilidades del personaje ( Posiblemente se pueda aumentar a mas )
 
     public Personaje(String nombre, double vida, int nivel, double ataqueFisico, double defensaFisica, double ataqueMagico, double defensaMagica, int magicuraMaxima, int magicuraActualues, String evolucion, List<String> afinidad, int estaminaMaxima, int estaminaActual) {
         this.nombre = nombre;
@@ -33,30 +34,6 @@ public abstract class Personaje{
         this.estaminaMaxima = estaminaMaxima;
         this.estaminaActual = estaminaActual;
         this.habilidades = new ArrayList<>();
-    }
-
-    public List<Habilidad> getHabilidades() {
-        return habilidades;
-    }
-
-    public void setHabilidades(List<Habilidad> habilidades) {
-        this.habilidades = habilidades;
-    }
-
-    public int getEstaminaMaxima() {
-        return estaminaMaxima;
-    }
-
-    public void setEstaminaMaxima(int estaminaMaxima) {
-        this.estaminaMaxima = estaminaMaxima;
-    }
-
-    public int getEstaminaActual() {
-        return estaminaActual;
-    }
-
-    public void setEstaminaActual(int estaminaActual) {
-        this.estaminaActual = estaminaActual;
     }
 
     public String getNombre() {
@@ -147,11 +124,30 @@ public abstract class Personaje{
         this.afinidad = afinidad;
     }
 
+    public int getEstaminaMaxima() {
+        return estaminaMaxima;
+    }
+
+    public void setEstaminaMaxima(int estaminaMaxima) {
+        this.estaminaMaxima = estaminaMaxima;
+    }
+
+    public int getEstaminaActual() {
+        return estaminaActual;
+    }
+
+    public void setEstaminaActual(int estaminaActual) {
+        this.estaminaActual = estaminaActual;
+    }
+
+    public List<Habilidad> getHabilidades() {
+        return habilidades;
+    }
+
+    public void setHabilidades(List<Habilidad> habilidades) {
+        this.habilidades = habilidades;
+    }
+
     public abstract void mostrarEstadisticas();
 
-    public void aprenderHabilid(Habilidad h){
-        if (h != null) {
-            this.habilidades.add(h);
-        }
-    }
 }

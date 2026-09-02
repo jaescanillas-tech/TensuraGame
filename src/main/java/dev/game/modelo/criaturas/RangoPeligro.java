@@ -1,4 +1,4 @@
-package dev.game.modelo;
+package dev.game.modelo.criaturas;
 
 public enum RangoPeligro {
     f,
