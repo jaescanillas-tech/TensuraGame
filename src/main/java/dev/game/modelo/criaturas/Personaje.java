@@ -22,14 +22,10 @@ public abstract class Personaje{
     protected int estaminaActual;
     protected List<Habilidad> habilidades; // Lista de habilidades del personaje ( Posiblemente se pueda aumentar a mas )
 
-    public Personaje(String nombre, Razas raza, int nivel, int magicuraActual, int estaminaActual) {
+    public Personaje(String nombre, Razas raza, int nivel) {
         this.nombre = nombre;
         this.raza = raza;
         this.nivel = nivel;
-        this.magicuraActual = this.magicuraMaxima;
-        this.estaminaActual = this.estaminaMaxima;
-
-
         //Estadisticas del enum
         this.vida = raza.getVidaBase();
         this.estaminaMaxima = raza.getEstaminaBase();
@@ -38,6 +34,12 @@ public abstract class Personaje{
         this.ataqueMagico = raza.getAtcMagicoBase();
         this.defensaFisica = raza.getDefFisicaBase();
         this.defensaMagica = raza.getDefMagicaBase();
+
+        this.magicuraActual = magicuraMaxima;
+        this.estaminaActual = estaminaMaxima;
+
+        this.defensaElemental = 0;
+        this.ataqueElemental = 0.0;
 
         //listas
         this.afinidad = new ArrayList<>();
@@ -56,7 +58,7 @@ public abstract class Personaje{
         return nivel;
     }
 
-    public List<Razas> getRaza() {
+    public Razas getRaza() {
         return raza;
     }
 
@@ -108,10 +110,23 @@ public abstract class Personaje{
         return habilidades;
     }
 
-    public void setHabilidades(List<Habilidad> habilidades) {
-        this.habilidades = habilidades;
+    public void evolucionar(){
+
     }
 
     public abstract void mostrarEstadisticas();
 
+    public void mostrarLibroHabilidades(){
+        System.out.println("\n===== Libro de Habilidades de " + this.getNombre() + " =====");
+        if (this.habilidades == null || this.habilidades.isEmpty()){
+            System.out.println("   No Posee habilidades Registradas.");
+            return;
+        }
+
+        for (int i = 0; i < this.habilidades.size(); i++) {
+            System.out.println("habilidad #" + (i + 1) + ":");
+            this.habilidades.get(i).DetallesHabilidad();
+            System.out.println("--------------------------------------------------");
+        }
+    }
 }

@@ -78,6 +78,23 @@ public abstract class Habilidad {
         return requerimiento;
     }
 
+    public String toString() {
+        return "Habilidad{" +
+                "id=" + id +
+                ", nombre='" + nombre + '\'' +
+                ", descripcion='" + descripcion + '\'' +
+                ", categoria=" + categoria +
+                ", diciplinas=" + diciplinas +
+                ", elementos=" + elementos +
+                ", efectos=" + efectos +
+                ", cooldown=" + cooldown +
+                ", duracion=" + duracion +
+                ", rango=" + rango +
+                ", costoVida=" + costoVida +
+                ", requerimiento=" + requerimiento +
+                '}';
+    }
+
     public abstract void DetallesHabilidad();
 
 }
