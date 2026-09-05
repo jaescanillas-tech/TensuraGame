@@ -1,42 +1,20 @@
 package dev.game.modelo.entidades;
 
 import dev.game.modelo.enums.Razas;
-import dev.game.modelo.enums.DiciplinaHabilidad;
 
 public class Jugador extends Personaje{
-    private int xpActual;
-    private int xpMaximo;
     private int dinero;
     private int destreza;
     private int capInventario;
     private boolean reqEvolucion;
 
     public Jugador(String nombre, Razas raza){
-        super(nombre, raza, 1);
-        this.xpActual = 0;
-        this.xpMaximo = 100;
+        super(nombre, raza);
         this.dinero = 0;
         this.destreza = 10;
         this.capInventario = 20;
         this.reqEvolucion = false;
-
-        habilidadesIniciales();
-    }
-
-    public int getXpActual() {
-        return xpActual;
-    }
-
-    public void setXpActual(int xpActual) {
-        this.xpActual = xpActual;
-    }
-
-    public int getXpMaximo() {
-        return xpMaximo;
-    }
-
-    public void setXpMaximo(int xpMaximo) {
-        this.xpMaximo = xpMaximo;
+        habilidadInicial();
     }
 
     public int getDinero() {
@@ -71,22 +49,14 @@ public class Jugador extends Personaje{
         this.reqEvolucion = reqEvolucion;
     }
 
-    public void habilidadesIniciales(){
-        switch (this.raza){
-            case Humano -> {
-                this.habilidades.add(DiciplinaHabilidad.CatalogoHabilidades.GOLPE);
-            }
-        }
-    }
 
     @Override
     public void mostrarEstadisticas() {
         System.out.println("=== Estadisticas Jugador ===");
         System.out.println("Nombre: " + this.getNombre());
-        System.out.println("Vida: " + this.getVida());
-        System.out.println("Nivel: " + this.getNivel());
-        System.out.println("Xp: " + this.getXpActual());
-        System.out.println("Sig niv: " + this.getXpMaximo());
+        System.out.println("Vida: " + this.getVidaMax() + " / " + this.vidaActual);
+        System.out.println("Estamina: " + this.getEstaminaActual() + " / " + this.getEstaminaMaxima());
+        System.out.println("Magicura: " + this.getMagicuraActual() + " / " + this.getMagicuraMaxima());
         System.out.println("Dinero: " + this.getDinero());
         System.out.println("Destreza: " + this.getDestreza());
         System.out.println("Cap inventario: " + this.getCapInventario());
@@ -98,14 +68,5 @@ public class Jugador extends Personaje{
         System.out.println("Ataque Magico: " + this.ataqueMagico);
         System.out.println("Ataque Elemental: " + this.ataqueElemental);
         System.out.println("Evolucion: " +  this.reqEvolucion);
-        System.out.println("=== habilidades Aprendidas ===");
-        if (this.habilidades.isEmpty()){
-            System.out.println("No tienes habilidades aprendidas");
-        } else {
-            for (int i = 0; i < this.habilidades.size(); i++) {
-                System.out.println("   " + (i + 1) + ".  " + this.habilidades.get(i));
-            }
-        }
-        System.out.println("========================================");
     }
 }

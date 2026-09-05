@@ -8,8 +8,8 @@ import java.util.List;
 
 public abstract class Personaje{
     protected String nombre;
-    protected double vida;
-    protected int nivel;
+    protected double vidaMax;
+    protected double vidaActual;
     protected Razas raza;
     protected double ataqueFisico;
     protected double ataqueMagico;
@@ -24,22 +24,23 @@ public abstract class Personaje{
     protected int estaminaActual;
     protected List<Habilidad> habilidades; // Lista de habilidades del personaje ( Posiblemente se pueda aumentar a mas )
 
-    public Personaje(String nombre, Razas raza, int nivel) {
+    public Personaje(String nombre, Razas raza) {
+        //Stats obligatorias
         this.nombre = nombre;
         this.raza = raza;
-        this.nivel = nivel;
-        //Estadisticas del enum
-        this.vida = raza.getVidaBase();
+        //Estadisticas del enum, stats base
+        this.vidaMax = raza.getVidaBase();
         this.estaminaMaxima = raza.getEstaminaBase();
         this.magicuraMaxima = raza.getMagicuraBase();
         this.ataqueFisico = raza.getAtcFisicoBase();
         this.ataqueMagico = raza.getAtcMagicoBase();
         this.defensaFisica = raza.getDefFisicaBase();
         this.defensaMagica = raza.getDefMagicaBase();
-
+        //stats cambiables
+        this.vidaActual = vidaMax;
         this.magicuraActual = magicuraMaxima;
         this.estaminaActual = estaminaMaxima;
-
+        //stats elemental modificable de acuerdo a la raza
         this.defensaElemental = 0;
         this.ataqueElemental = 0.0;
 
@@ -52,12 +53,12 @@ public abstract class Personaje{
         return nombre;
     }
 
-    public double getVida() {
-        return vida;
+    public double getVidaActual() {
+        return vidaActual;
     }
 
-    public int getNivel() {
-        return nivel;
+    public double getVidaMax() {
+        return vidaMax;
     }
 
     public Razas getRaza() {
@@ -116,6 +117,12 @@ public abstract class Personaje{
 
     }
 
+    public void habilidadInicial(){
+        this.habilidades.add(CatalogoHabilidades.GOLPE_COMUN);
+        this.habilidades.add(CatalogoHabilidades.GOLPE_FUERTE);
+        this.habilidades.add(CatalogoHabilidades.GOLPE_RAPIDO);
+    }
+
     public abstract void mostrarEstadisticas();
 
     public void mostrarLibroHabilidades(){
@@ -127,7 +134,7 @@ public abstract class Personaje{
 
         for (int i = 0; i < this.habilidades.size(); i++) {
             System.out.println("habilidad #" + (i + 1) + ":");
-            this.habilidades.get(i).DetallesHabilidad();
+            this.habilidades.get(i).detallesHabilidad();
             System.out.println("--------------------------------------------------");
         }
     }
@@ -149,5 +156,8 @@ public abstract class Personaje{
     }
 
     public void consumirEstamina(int costeEstamina) {
+    }
+
+    public void recibirDano(double danoFinal) {
     }
 }

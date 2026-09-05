@@ -1,23 +1,36 @@
 package dev.game.modelo.habilities;
 import dev.game.modelo.entidades.Personaje;
 import dev.game.modelo.enums.CategoriaHabilidad;
+import dev.game.modelo.enums.DiciplinaHabilidad;
+import dev.game.modelo.enums.EfectosEstado;
 import dev.game.modelo.enums.Elementos;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public abstract class Habilidad {
     protected String nombre;
     protected CategoriaHabilidad tipo;
     protected Elementos elementos;
+    protected DiciplinaHabilidad disciplina;
     protected int costeMagicura;
     protected int costeEstamina;
     protected String descripcion;
+    protected List<EfectosEstado> efectosEstados;
 
-    public Habilidad(String nombre, CategoriaHabilidad tipo, Elementos elementos, int consteMagicura, int costeEstamina, String descripcion) {
+    public Habilidad(String nombre, CategoriaHabilidad tipo, Elementos elementos, DiciplinaHabilidad disciplina, int costeMagicura, int costeEstamina, String descripcion) {
         this.nombre = nombre;
         this.tipo = tipo;
         this.elementos = elementos;
-        this.costeMagicura = consteMagicura;
+        this.disciplina = disciplina;
+        this.costeMagicura = costeMagicura;
         this.costeEstamina = costeEstamina;
         this.descripcion = descripcion;
+        this.efectosEstados = new ArrayList<>();
+    }
+
+    public DiciplinaHabilidad getDisciplina() {
+        return disciplina;
     }
 
     public String getNombre() {
@@ -44,34 +57,11 @@ public abstract class Habilidad {
         return descripcion;
     }
 
-    public boolean ejecutar(Personaje usuario, Personaje objetivo){
-        if (usuario.getMagicuraActual() < this.costeMagicura) {
-            System.out.println(usuario.getNombre() + " no posee suficientes magicuras para activar la habilidad: ["+ this.nombre + "]");
-            return false;
-        }
-        if (usuario.getEstaminaActual() < this.costeEstamina) {
-            System.out.println(usuario.getNombre() + " no posee suficientes estaminas para activar la habilidad: ["+ this.nombre + "]");
-            return false;
-        }
-        usuario.consumirMagicura(this.costeMagicura);
-        usuario.consumirEstamina(this.costeEstamina);
-        System.out.println(usuario.getNombre() + " activa [" + this.nombre + "] (" + this.tipo + ")!");
-        if (esAnuladoPorDefensa(objetivo)) {
-            System.out.println("«Voz del Mundo: La técnica fue completamente anulada por la barrera existencial de " + objetivo.getNombre() + ".»");
-            return true;
-        }
-        aplicarEfecto(usuario, objetivo);
-        return true;
-    }
-    protected boolean esAnuladoPorDefensa(Personaje objetivo) {
-        if (objetivo.poseeHabilidadTipo(TipoHabilidad.DEFINITIVA) && this.tipo.getPrioridad() < TipoHabilidad.DEFINITIVA.getPrioridad()) {
-            return true;
-        }
-        if (this.elemento != null && objetivo.esInmuneAElemento(this.elemento)) {
-            return true;
-        }
-        return false;
-    }
+   public void ejecutar(Personaje usuario, Personaje objetivo) {
 
-    protected abstract void aplicarEfecto(Personaje usuario, Personaje objetivo);
+   }
+
+   public abstract void detallesHabilidad();
+
+    public abstract void aplicarEfecto(Personaje atacante, Personaje objetivo);
 }
