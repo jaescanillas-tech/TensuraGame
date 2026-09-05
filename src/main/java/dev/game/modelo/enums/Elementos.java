@@ -1,4 +1,4 @@
-package dev.game.modelo.habilities;
+package dev.game.modelo.enums;
 
 public enum Elementos {
     Ninguno,

@@ -1,4 +1,9 @@
-package dev.game.modelo.habilities;
+package dev.game.modelo.enums;
+
+import dev.game.modelo.habilities.*;
+
+import java.util.HashMap;
+import java.util.List;
 
 public enum DiciplinaHabilidad {
     Artes,
@@ -10,5 +15,6 @@ public enum DiciplinaHabilidad {
     MagiaSagrada,
     MagiaDemoniaca,
     ChaosMagic,
-    NukeMagic
+    NukeMagic;
+
 }

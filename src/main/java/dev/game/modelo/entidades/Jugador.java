@@ -1,9 +1,7 @@
-package dev.game.modelo.criaturas;
+package dev.game.modelo.entidades;
 
-import dev.game.modelo.habilities.Elementos;
-import dev.game.modelo.habilities.Habilidad;
-
-import java.util.List;
+import dev.game.modelo.enums.Razas;
+import dev.game.modelo.enums.DiciplinaHabilidad;
 
 public class Jugador extends Personaje{
     private int xpActual;
@@ -21,6 +19,8 @@ public class Jugador extends Personaje{
         this.destreza = 10;
         this.capInventario = 20;
         this.reqEvolucion = false;
+
+        habilidadesIniciales();
     }
 
     public int getXpActual() {
@@ -69,6 +69,14 @@ public class Jugador extends Personaje{
 
     public void setReqEvolucion(boolean reqEvolucion) {
         this.reqEvolucion = reqEvolucion;
+    }
+
+    public void habilidadesIniciales(){
+        switch (this.raza){
+            case Humano -> {
+                this.habilidades.add(DiciplinaHabilidad.CatalogoHabilidades.GOLPE);
+            }
+        }
     }
 
     @Override

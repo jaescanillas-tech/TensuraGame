@@ -1,4 +1,6 @@
-package dev.game.modelo.criaturas;
+package dev.game.modelo.entidades;
+import dev.game.modelo.enums.Elementos;
+import dev.game.modelo.enums.Razas;
 import dev.game.modelo.habilities.*;
 
 import java.util.ArrayList;
@@ -128,5 +130,24 @@ public abstract class Personaje{
             this.habilidades.get(i).DetallesHabilidad();
             System.out.println("--------------------------------------------------");
         }
+    }
+
+    public void aprenderHabilidad(Habilidad habilidad){
+        if (habilidad == null){
+            System.out.println("No se puede aprender una habilidad nula.");
+            return;
+        }
+        if (this.habilidades.contains(habilidad)){
+            System.out.println("Ya conoces la habilidad: " + habilidad.getNombre());
+            return;
+        }
+        this.habilidades.add(habilidad);
+        System.out.println("Has aprendido la habilidad: " + habilidad.getNombre());
+    }
+
+    public void consumirMagicura(int costeMagicura) {
+    }
+
+    public void consumirEstamina(int costeEstamina) {
     }
 }

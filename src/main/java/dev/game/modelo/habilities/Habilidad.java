@@ -1,100 +1,77 @@
 package dev.game.modelo.habilities;
-import java.util.List;
+import dev.game.modelo.entidades.Personaje;
+import dev.game.modelo.enums.CategoriaHabilidad;
+import dev.game.modelo.enums.Elementos;
 
 public abstract class Habilidad {
-    protected int id;
     protected String nombre;
+    protected CategoriaHabilidad tipo;
+    protected Elementos elementos;
+    protected int costeMagicura;
+    protected int costeEstamina;
     protected String descripcion;
-    protected CategoriaHabilidad categoria;
-    protected List<DiciplinaHabilidad> diciplinas;
-    protected List<Elementos> elementos;
-    protected List<EfectosEstado> efectos;
-    protected int cooldown;
-    protected int duracion;
-    protected int rango;
-    protected double costoVida;
-    protected boolean requerimiento; // Si requiere un requisito breve
 
-    public Habilidad(int id, String nombre, String descripcion, CategoriaHabilidad categoria, List<DiciplinaHabilidad> diciplinas, List<Elementos> elementos, List<EfectosEstado> efectos, int cooldown, int duracion, int rango, double costoVida, boolean requerimiento) {
-        this.id = id;
+    public Habilidad(String nombre, CategoriaHabilidad tipo, Elementos elementos, int consteMagicura, int costeEstamina, String descripcion) {
         this.nombre = nombre;
-        this.descripcion = descripcion;
-        this.categoria = categoria;
-        this.diciplinas = diciplinas;
+        this.tipo = tipo;
         this.elementos = elementos;
-        this.efectos = efectos;
-        this.cooldown = cooldown;
-        this.duracion = duracion;
-        this.rango = rango;
-        this.costoVida = costoVida;
-        this.requerimiento = requerimiento;
-    }
-
-    public int getId() {
-        return id;
+        this.costeMagicura = consteMagicura;
+        this.costeEstamina = costeEstamina;
+        this.descripcion = descripcion;
     }
 
     public String getNombre() {
         return nombre;
     }
 
+    public CategoriaHabilidad getTipo() {
+        return tipo;
+    }
+
+    public Elementos getElementos() {
+        return elementos;
+    }
+
+    public int getCosteMagicura() {
+        return costeMagicura;
+    }
+
+    public int getCosteEstamina() {
+        return costeEstamina;
+    }
+
     public String getDescripcion() {
         return descripcion;
     }
 
-    public CategoriaHabilidad getCategoria() {
-        return categoria;
+    public boolean ejecutar(Personaje usuario, Personaje objetivo){
+        if (usuario.getMagicuraActual() < this.costeMagicura) {
+            System.out.println(usuario.getNombre() + " no posee suficientes magicuras para activar la habilidad: ["+ this.nombre + "]");
+            return false;
+        }
+        if (usuario.getEstaminaActual() < this.costeEstamina) {
+            System.out.println(usuario.getNombre() + " no posee suficientes estaminas para activar la habilidad: ["+ this.nombre + "]");
+            return false;
+        }
+        usuario.consumirMagicura(this.costeMagicura);
+        usuario.consumirEstamina(this.costeEstamina);
+        System.out.println(usuario.getNombre() + " activa [" + this.nombre + "] (" + this.tipo + ")!");
+        if (esAnuladoPorDefensa(objetivo)) {
+            System.out.println("«Voz del Mundo: La técnica fue completamente anulada por la barrera existencial de " + objetivo.getNombre() + ".»");
+            return true;
+        }
+        aplicarEfecto(usuario, objetivo);
+        return true;
+    }
+    protected boolean esAnuladoPorDefensa(Personaje objetivo) {
+        if (objetivo.poseeHabilidadTipo(TipoHabilidad.DEFINITIVA) && this.tipo.getPrioridad() < TipoHabilidad.DEFINITIVA.getPrioridad()) {
+            return true;
+        }
+        if (this.elemento != null && objetivo.esInmuneAElemento(this.elemento)) {
+            return true;
+        }
+        return false;
     }
 
-    public List<DiciplinaHabilidad> getDiciplinas() {
-        return diciplinas;
-    }
-
-    public List<Elementos> getElementos() {
-        return elementos;
-    }
-
-    public List<EfectosEstado> getEfectos() {
-        return efectos;
-    }
-
-    public int getCooldown() {
-        return cooldown;
-    }
-
-    public int getDuracion() {
-        return duracion;
-    }
-
-    public int getRango() {
-        return rango;
-    }
-
-    public double getCostoVida() {
-        return costoVida;
-    }
-
-    public boolean isRequerimiento() {
-        return requerimiento;
-    }
-
-    public String toString() {
-        return "Habilidad{" +
-                "id=" + id +
-                ", nombre='" + nombre + '\'' +
-                ", descripcion='" + descripcion + '\'' +
-                ", categoria=" + categoria +
-                ", diciplinas=" + diciplinas +
-                ", elementos=" + elementos +
-                ", efectos=" + efectos +
-                ", cooldown=" + cooldown +
-                ", duracion=" + duracion +
-                ", rango=" + rango +
-                ", costoVida=" + costoVida +
-                ", requerimiento=" + requerimiento +
-                '}';
-    }
-
-    public abstract void DetallesHabilidad();
-
+    protected abstract void aplicarEfecto(Personaje usuario, Personaje objetivo);
 }

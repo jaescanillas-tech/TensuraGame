@@ -1,9 +1,11 @@
-package dev.game.modelo.criaturas;
+package dev.game.modelo.enums;
 
 public enum Razas {
     //Nombre, Vida, Estamina, Magicuras, Atc Fisico, Atc Magico, Def Fisica, Def Magica
 
-    Humano(100.0, 120, 50, 12.0, 10.0, 8, 5);
+    // Razas Debiles
+    Humano(100.0, 100, 40, 12.0, 10.0, 8, 5),
+    Goblin(130.0, 100, 20, 10.0, 8.0, 6, 4);
 
     private final double vidaBase;
     private final int estaminaBase;
