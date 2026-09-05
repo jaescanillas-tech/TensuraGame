@@ -1,6 +1,7 @@
 package dev.game.modelo.enums;
 
 public enum RangoPeligro {
+    // Monstruos
     f,
     e,
     d,
@@ -9,5 +10,14 @@ public enum RangoPeligro {
     a,
     s,
     Calamidad,
-    Catastrofe
+    Catastrofe,
+    //Humanos
+    civil,
+    campesino,
+    soldado,
+    capSol,
+    solmagico,
+    capsolmag,
+    bandido
+
 }
