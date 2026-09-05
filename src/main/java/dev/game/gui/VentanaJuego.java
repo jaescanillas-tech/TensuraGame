@@ -4,7 +4,7 @@ import javax.swing.*;
 
 public class VentanaJuego extends JFrame{
     public VentanaJuego() {
-        super("That Time I Got Reincarnated as a Slime - RPG");
+        super("Tensura Game Alpha 0.0.1");
 
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setSize(900, 560);

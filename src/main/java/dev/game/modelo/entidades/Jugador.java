@@ -6,6 +6,7 @@ public class Jugador extends Personaje{
     private int dinero;
     private int destreza;
     private int capInventario;
+    private double suerte;
     private boolean reqEvolucion;
 
     public Jugador(String nombre, Razas raza){
@@ -13,8 +14,13 @@ public class Jugador extends Personaje{
         this.dinero = 0;
         this.destreza = 10;
         this.capInventario = 20;
+        this.suerte = 0.0;
         this.reqEvolucion = false;
         habilidadInicial();
+    }
+
+    public double getSuerte() {
+        return suerte;
     }
 
     public int getDinero() {

@@ -36,9 +36,10 @@ public class PantallaTitulo extends JPanel {
     }
     private void ejecutarAccion(int indice) {
         switch (indice) {
-            case 0 -> JOptionPane.showMessageDialog(this,
-                    "«Voz del Mundo: Alma detectada. Iniciando reencarnación...»",
-                    "Tensura RPG", JOptionPane.INFORMATION_MESSAGE);
+            case 0 -> {
+                // Cambia a la creación de personaje
+                ventana.cambiarPantalla(new PantallaCreacionPersonaje(ventana));
+            }
             case 1 -> JOptionPane.showMessageDialog(this,
                     "«Voz del Mundo: Accediendo al espacio de prueba de combate.»",
                     "Simulador", JOptionPane.INFORMATION_MESSAGE);
