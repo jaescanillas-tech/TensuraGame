@@ -1,7 +1,8 @@
 package dev.game.modelo.entidades;
 import dev.game.modelo.enums.Elementos;
 import dev.game.modelo.enums.Razas;
-import dev.game.modelo.habilities.*;
+import dev.game.modelo.habilidades.Habilidad;
+import dev.game.modelo.habilidades.*;
 
 import java.util.ArrayList;
 import java.util.List;

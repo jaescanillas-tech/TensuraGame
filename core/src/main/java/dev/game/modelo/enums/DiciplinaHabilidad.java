@@ -1,6 +1,6 @@
 package dev.game.modelo.enums;
 
-import dev.game.modelo.habilities.*;
+import dev.game.modelo.habilidades.*;
 
 import java.util.HashMap;
 import java.util.List;
