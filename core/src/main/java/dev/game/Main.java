@@ -1,11 +1,14 @@
 package dev.game;
 
 import com.badlogic.gdx.Game;
-//prueba de psuh
-/** {@link com.badlogic.gdx.ApplicationListener} implementation shared by all platforms. */
+import dev.game.gui.CharacterCreationScreen;
+import dev.game.gui.TitleScreen;
+
 public class Main extends Game {
     @Override
     public void create() {
-        setScreen(new FirstScreen());
+        // Esta es la primera pantalla que se muestra al abrir el juego.
+        // Para cambiar la pantalla inicial, reemplaza TitleScreen por otra clase.
+        setScreen(new CharacterCreationScreen(this));
     }
 }
